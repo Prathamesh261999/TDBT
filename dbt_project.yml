@@ -37,6 +37,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   my_new_project:
-    # Applies to all files under models/example/
+
+    staging:
+      mercurymart:
+        +materialized: view
+
     example:
-      +materialized: table
+      +materialized: view
+
