@@ -42,6 +42,11 @@ models:
       mercurymart:
         +materialized: view
 
+    marts:
+      mercurymart:
+        +materialized: table
+
     example:
       +materialized: view
+
 
