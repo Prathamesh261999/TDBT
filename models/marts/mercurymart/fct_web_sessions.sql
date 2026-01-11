@@ -1,3 +1,8 @@
+{{ config(
+    materialized='incremental',
+    unique_key='session_id'
+) }}
+
 select
     s.session_id,
     s.customer_id,
@@ -19,6 +24,13 @@ select
 from {{ ref('stg_mercurymart__web_sessions') }} s
 left join {{ ref('stg_mercurymart__web_events') }} e
     on s.session_id = e.session_id
+
+{% if is_incremental() %}
+where s.session_start_ts > (
+    select max(session_start_ts) from {{ this }}
+)
+{% endif %}
+
 group by
     s.session_id,
     s.customer_id,

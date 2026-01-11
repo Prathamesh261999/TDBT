@@ -1,0 +1,32 @@
+version: 2
+
+exposures:
+  - name: revenue_performance_dashboard
+    type: dashboard
+    maturity: high
+    url: https://bi.mercurymart.com/dashboards/revenue
+    description: >
+      Executive dashboard tracking revenue, net sales,
+      discounts, and order volume trends.
+    owner:
+      name: Analytics Team
+      email: analytics@mercurymart.com
+    depends_on:
+      - ref('fct_orders_daily')
+      - ref('dim_customers')
+      - ref('dim_products')
+
+  - name: marketing_campaign_insights_report
+    type: analysis
+    maturity: medium
+    url: https://bi.mercurymart.com/reports/marketing-campaigns
+    description: >
+      Report analyzing campaign effectiveness, conversion,
+      and revenue contribution by marketing channel.
+    owner:
+      name: Marketing Analytics
+      email: marketing-analytics@mercurymart.com
+    depends_on:
+      - ref('fct_orders_daily')
+      - ref('fct_web_sessions')
+      - ref('dim_products')
