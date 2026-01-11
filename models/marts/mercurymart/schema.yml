@@ -111,15 +111,15 @@ models:
 
       - name: gross_revenue
         description: Total order revenue before discounts
-        data_type: numeric
+        data_type: numeric(18,2)
 
       - name: discount_amount
         description: Total discount applied to the order
-        data_type: numeric
+        data_type: numeric(18,2)
 
       - name: net_sales
         description: Net revenue after discounts
-        data_type: numeric
+        data_type: numeric(18,2)
         tests:
           - net_sales_non_negative
 
